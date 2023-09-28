@@ -1,0 +1,13 @@
+FROM ubuntu:22.04
+
+RUN apt-get update && \
+    apt-get install -y samba
+
+RUN useradd admin -p xpto && \
+    useradd usr1 -p xpto && \
+    useradd usr2 -p xpto
+
+COPY ./samba-configuration.sh /usr/local/bin
+#RUN chmod +x /usr/local/bin/samba-configuration.sh
+
+ENTRYPOINT [ "/usr/local/bin/samba-configuration.sh" ]

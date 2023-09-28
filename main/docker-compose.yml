@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  samba:
+    build: ./samba
+    container_name: dmfaria-samba
+    tty: true
+    stdin_open: true
+    ports:
+      - "139:139"
+      - "476:445"
+    volumes:
+      - ./private:/home/samba/share/private
+      - ./public:/home/samba/share/public
+      - ./usr1:/home/samba/share/usr1
+      - ./usr2:/home/samba/share/usr2
+      - ./cfg/samba/smb.conf:/etc/samba/smb.conf     
+
